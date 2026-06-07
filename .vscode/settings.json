@@ -1,0 +1,42 @@
+{
+    // ========== 字体、排版、文本显示 ==========
+    "editor.fontFamily": "JetBrains Mono, Consolas, 'Microsoft YaHei'",
+    "editor.fontSize": 15,
+    "editor.lineHeight": 24,
+    "editor.letterSpacing": 0.4,
+    "editor.fontLigatures": true,
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "boundary",
+    "editor.renderLineHighlight": "all",
+
+    // ========== 注释颜色、样式强化 ==========
+    "editor.tokenColorCustomizations": {
+        "comments": {
+            "foreground": "#82ffa8",
+            "fontStyle": "italic"
+        }
+    },
+
+    // ========== Better Comments 多彩注释 ==========
+    "better-comments.multilineComments": true,
+    "better-comments.highlightPlainText": true,
+    "better-comments.tags": [
+        { "tag": "!", "color": "#FF4747", "bold": true },
+        { "tag": "?", "color": "#3498DB", "bold": true },
+        { "tag": "*", "color": "#2ECC71", "bold": true },
+        { "tag": "TODO", "color": "#FF9800", "bold": true },
+        { "tag": "NOTE", "color": "#9B59B6", "bold": true }
+    ],
+
+    // ========== Markdown 预览更舒服 ==========
+    "markdown.preview.fontSize": 15,
+    "markdown.preview.lineHeight": 1.6,
+
+    // ========== 自动补全更顺滑 ==========
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.suggestOnTriggerCharacters": true
+}
