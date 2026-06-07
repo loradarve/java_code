@@ -1,0 +1,154 @@
+import numpy as np
+import sympy as sp
+
+# ls = [1,2,3,4,5,6] # 4
+# print(ls[1:4])
+# ls[2] = ['a', 'b']
+# print(ls)
+
+# a = np.array([[1,2],[3,4]]) # 6
+# print(np.sum(a,axis=0))
+
+# print(np.array([1,2,3,4]) == np.arange(2,6)) # 7
+
+# a = np.array([-1,0,1]) # 8
+# p = np.poly1d(a)
+# print(p([0,1,2]))
+# print(p.deriv())
+
+# print(sp.radsimp(1 / sp.sqrt(2))) # 10
+# x = sp.symbols('x')
+# f = sp.Function('f')
+# print(sp.Derivative(f(x), x, x, x))
+
+# import copy # 2.2 深与浅复制
+# a=[['a','b'],1,2]
+# b=a
+# c=copy.copy(a)
+# d=copy.deepcopy(a)
+# a.append([3,4])
+# a[3].append(5)
+# a[0].append('c')
+# print('a=',a)
+# print('b=',b)
+# print('c=',c)
+# print('d=', d)
+
+# a = np.array([[1, 2, 3], [4, 5, 6]]) # 2.4
+# b = np.array([7, 8, 9])
+# c = a + b
+# print(c)
+
+# def format_date(year, month, day): # 3.1编写日期显示函数
+#     month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+#
+#     if (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0):
+#         month_days[1] = 29
+#
+#     if not (1 <= month <= 12) or not (1 <= day <= month_days[month - 1]):
+#         return "Invalid date"
+#
+#     return f"{year:04d}-{month:02d}-{day:02d}"
+# print(format_date(2024,2,25))
+# print(format_date(2024,2,31))
+
+# import numpy as np # 3.2两种方法计算KX=F
+# # 题目给出的刚度矩阵 K 和外力向量 F
+# K = np.array([[10, -2, -1],
+#               [-1, 12, -5],
+#               [-1, -5, 8]])
+# F = np.array([10, 20, 15])
+# # 1. 数值计算方法 (直接求解线性方程组)
+# X_num = np.linalg.solve(K, F)
+# print("数值计算得到的位移向量 X:")
+# print(X_num)
+# # 2. 符号计算方法
+# from sympy import symbols, Matrix, linsolve
+# # 定义符号变量
+# x, y, z = symbols('x y z')
+# # 将矩阵和向量转换为 SymPy 的 Matrix 对象
+# K_sym = Matrix(K)
+# F_sym = Matrix(F)
+# # 构建并求解符号方程组 K*X = F
+# # linsolve 返回一个集合，我们将其转换为列表以便查看
+# X_sym_set = linsolve((K_sym, F_sym), (x, y, z))
+# X_sym = list(next(iter(X_sym_set)))  # 提取唯一的解向量
+# print("\n符号计算得到的位移向量 X:")
+# print(X_sym)
+
+# import matplotlib.pyplot as plt # 3.3 绘制虚线散点图与饼图
+# import numpy as np
+#
+# # 创建图形和子图
+# fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+#
+# # 第一个子图：y = x^2
+# x = np.linspace(-5, 5, 100)
+# y = x**2
+# axs[0].plot(x, y, '--')
+# axs[0].scatter(x, y, s=10)
+# axs[0].set_xlabel('x')
+# axs[0].set_ylabel('y')
+#
+# # 第二个子图：饼图
+# data = [12, 42, 30, 60, 87, 99]
+# """第一部分：[0, 0.1]表示前两个数据块的突出距离
+#     第一个数据块不突出：0
+#     第二个数据块突出 0.1 倍半径：0.1
+# 第二部分：[0]*4表示后四个数据块不突出
+#     [0]*4= [0, 0, 0, 0]"""
+# explode = [0, 0.1] + [0]*4
+# axs[1].pie(data, explode=explode)
+#
+# plt.tight_layout()
+# plt.show()
+
+class Shape: # 3.4用类的方法计算图形面积与周长
+    def __init__(self, name):
+        self.name = name
+
+    # 题目要求 Shape 里有 area 方法，先占位
+    def area(self):
+        pass
+
+    # 题目要求 Shape 里有 perimeter 方法，先占位
+    def perimeter(self):
+        pass
+
+
+class Circle(Shape):
+    def __init__(self, radius):
+        super().__init__("Circle")
+        self.radius = radius
+
+    # 子类实现具体的面积计算
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+    # 子类实现具体的周长计算
+    def perimeter(self):
+        return 2 * 3.14 * self.radius
+
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        super().__init__("Rectangle")
+        self.width = width
+        self.height = height
+
+    # 子类实现具体的面积计算
+    def area(self):
+        return self.width * self.height
+
+    # 子类实现具体的周长计算
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+
+if __name__ == '__main__':
+    circle = Circle(5)
+    rectangle = Rectangle(4, 6)
+    print(f"{circle.name} 面积：{circle.area()}，周长：{circle.perimeter()}")
+    print(f"{rectangle.name} 面积：{rectangle.area()}，周长：{rectangle.perimeter()}")
+    
+# PS:选中内容，然后按住ctrl + / ,即可取消注释符，然后可以依次运行代码
